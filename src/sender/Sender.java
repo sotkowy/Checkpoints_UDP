@@ -41,19 +41,23 @@ public class Sender {
     private String fileSender (String fileLocation) {
         File file = new File(fileLocation);
         String toBeReturned = "";
-        try {
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
+        if(fileLocation.endsWith(".txt")) {
+            try {
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
 
-            String line;
-            while((line = br.readLine()) != null) {
-                System.out.println(line);
-                toBeReturned += line;
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                    toBeReturned += line;
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            toBeReturned = fileLocation;
         }
         return toBeReturned;
     }

@@ -6,7 +6,7 @@ import java.net.SocketException;
 
 public class ReceiverAppDriver { // Serve the Reciever.
     public static void main(String[] args) throws Exception {
-        if(args.length < 2 && args.length > 3) {
+        if(args.length < 1 && args.length > 3) {
             throw new Exception("Invalid arguments");
         }
         try {
@@ -15,7 +15,8 @@ public class ReceiverAppDriver { // Serve the Reciever.
                     new Receiver(args[1], Integer.parseInt(args[2]));
                     break;
                 default:
-                    throw new Exception("Please -f flag to send quote");
+                    new Receiver(Integer.parseInt(args[0]));
+                    break;
             }
         }catch (Exception e) {
             e.printStackTrace();

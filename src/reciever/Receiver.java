@@ -12,6 +12,11 @@ public class Receiver {
     private DatagramSocket datSock;
     private DatagramPacket datPac;
 
+    public Receiver(int portNumber) {
+        this.portNumber = portNumber;
+        runReceiver();
+    }
+
     public Receiver(String fileName, int portNumber)  {
         this.filename = fileName;
         this.portNumber = portNumber;
@@ -25,7 +30,10 @@ public class Receiver {
             datSock.receive(datPac);
             String str = new String(datPac.getData(),0, datPac.getLength());
             System.out.println(str);
-            fileMaker(str);
+            if(filename != null) {
+                fileMaker(str);
+            }
+
 
         }catch(SocketException e) {
             e.printStackTrace();
